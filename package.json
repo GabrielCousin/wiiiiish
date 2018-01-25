@@ -1,6 +1,6 @@
 {
   "name": "wiiiiish",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Useless plugin for random happy new year wishes",
   "main": "src/wiiiiish.js",
   "repository": "git@github.com:GabrielCousin/wiiiiish.git",
