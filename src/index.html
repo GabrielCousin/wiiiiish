@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+  <div>
+    <h1 class="w-title">
+      <span>We wish you </span>
+      <span class="w-wish" id="w-container">
+        <span>a happy new year!</span>
+      </span>
+    </h1>
+
+    <ul class="w-hidden-list" id="w-list">
+      <li>the best</li>
+      <li>to join the Billionaire Boys Club</li>
+      <li>to enjoy 2018</li>
+    </ul>
+
+    <button class="w-trigger" id="w-trigger" type="button">✨ Make a wish ✨</button>
+  </div>
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    new Wiiiiish({
+      itemsSelector: '#w-list',
+      targetSelector: '#w-container',
+      triggerSelector: '#w-trigger'
+    });
+  });
+  </script>
+</body>
+</html>

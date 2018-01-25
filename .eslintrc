@@ -1,0 +1,14 @@
+{
+  parserOptions: {
+    ecmaVersion: 2017,
+    sourceType: "module"
+  },
+  env: {
+    node: true,
+    browser: true
+  },
+  extends: [
+    "eslint:recommended"
+  ],
+  rules: {}
+}
