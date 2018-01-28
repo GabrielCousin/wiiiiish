@@ -19,6 +19,8 @@ module.exports = function Wiiiiish (options) {
   })
 
   this.addText = () => {
+    this.$wishText.classList.add('is-typing')
+
     let newIndex = Math.floor(Math.random() * this.wishes.length)
 
     while (this.currentIndex === newIndex) {
@@ -45,19 +47,27 @@ module.exports = function Wiiiiish (options) {
     })
   }
 
+  this.clear = () => {
+    for (let i = 0; i < this.timeouts.length; i++) {
+      clearTimeout(this.timeouts[i])
+    }
+  }
+
   this.removeText = () => {
     this.$wishText.innerHTML = ''
   }
 
-  this.updateText = () => {
+  this.selectText = () => {
     document.querySelectorAll(`${this.options.targetSelector} span`).forEach((span) => {
-      span.classList.remove('is-selected')
       span.classList.add('is-selected')
     })
+  }
 
-    for (let i = 0; i < this.timeouts.length; i++) {
-      clearTimeout(this.timeouts[i])
-    }
+  this.updateText = () => {
+    this.$wishText.classList.remove('is-typing')
+
+    this.selectText()
+    this.clear()
 
     this.timeouts = [
       setTimeout(this.removeText, this.options.removalDelay),
