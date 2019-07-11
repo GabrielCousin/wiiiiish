@@ -1,4 +1,7 @@
-module.exports = function Wiiiiish (options) {
+import 'normalize.css'
+import './style.css'
+
+export default function Wiiiiish (options) {
   this.options = Object.assign({
     itemsSelector: '#w-list',
     targetSelector: '#w-container',

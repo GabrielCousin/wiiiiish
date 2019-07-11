@@ -1,33 +1,39 @@
-const webpack = require('webpack')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
+  mode: 'production',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: {
-                  discardComments: { removeAll: true }
-                }
-              }
-            }, {
-              loader: 'postcss-loader',
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
             }
-          ]
-        })
+          }, {
+            loader: 'postcss-loader',
+            options: {
+                ident: 'postcss',
+                plugins: () => [
+                    require('autoprefixer')()
+                ]
+            }
+          }
+        ]
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin('style.css'),
-    new webpack.optimize.UglifyJsPlugin()
-  ]
+    new MiniCssExtractPlugin({
+      filename: 'style.css'
+    })
+  ],
+  optimization: {
+    minimize: true
+  }
 })

@@ -2,26 +2,31 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/wiiiiish.js',
   output: {
     path: path.resolve('dist'),
     filename: '[name].js',
     library: 'Wiiiiish',
-    libraryTarget: 'var'
+    libraryExport: 'default',
+    libraryTarget: 'window'
   },
   performance: {
     hints: false,
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-      }, {
-        test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'eslint-loader'
+        use: [
+          'babel-loader',
+          {
+            loader: 'eslint-loader',
+            options: {
+              emitWarning: true
+            }
+          }
+        ]
       }
     ]
   },

@@ -3,22 +3,19 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js')
 
 module.exports = merge(common, {
+  mode: 'development',
   devtool: 'cheap-module-source-map',
   devServer: {
     historyApiFallback: true,
     hot: true,
-    quiet: true,
     overlay: true,
     port: 3000,
     watchOptions: {
       ignored: /node_modules/,
     }
   },
-  performance: {
-    hints: false,
-  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
         use: [
@@ -28,11 +25,21 @@ module.exports = merge(common, {
             options: {
               importLoaders: 1
             }
-          },
-          'postcss-loader'
+          }, {
+            loader: 'postcss-loader',
+            options: {
+                ident: 'postcss',
+                plugins: () => [
+                    require('autoprefixer')()
+                ]
+            }
+          }
         ]
       }
     ]
+  },
+  performance: {
+    hints: false,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
