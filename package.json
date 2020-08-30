@@ -2,33 +2,19 @@
   "name": "wiiiiish",
   "version": "0.1.3",
   "description": "Useless plugin for random happy new year wishes",
-  "main": "src/main.js",
+  "main": "dist/wiiiiish.js",
+  "module": "src/wiiiiish.js",
   "repository": "git@github.com:GabrielCousin/wiiiiish.git",
   "author": "Gabriel Cousin <csngab@gmail.com>",
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
+    "start": "parcel serve src/index.html",
+    "dev": "parcel watch src/index.html",
+    "build": "parcel build src/wiiiiish.js --no-minify --global Wiiiiish",
+    "build:demo": "parcel build src/index.html"
   },
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.4",
-    "@babel/preset-env": "^7.5.4",
-    "autoprefixer": "^9.6.1",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.0.0",
-    "eslint": "^6.0.1",
-    "eslint-loader": "^2.2.1",
-    "expose-loader": "^0.7.4",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.7.0",
     "normalize.css": "^8.0.1",
-    "postcss-loader": "^3.0.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.1.11",
-    "webpack-merge": "^4.1.1"
+    "parcel-bundler": "^1.12.4"
   }
 }

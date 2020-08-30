@@ -5,7 +5,8 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Useless plugin for random happy new year wishes">
-  <title><%= htmlWebpackPlugin.options.title %></title>
+  <title>Wiiiiish</title>
+  <link href="//fonts.googleapis.com/css?family=Roboto+Mono|Rubik:900&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1 class="w-title">
@@ -20,14 +21,6 @@
     <li>to enjoy 2018</li>
   </ul>
   <button class="w-trigger" id="w-trigger" type="button">✨ Make a wish ✨</button>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      new Wiiiiish({
-        itemsSelector: '#w-list',
-        targetSelector: '#w-container',
-        triggerSelector: '#w-trigger'
-      });
-    });
-  </script>
+  <script src="./index.js"></script>
 </body>
 </html>

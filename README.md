@@ -26,7 +26,7 @@ Useless plugin for random happy new year wishes
 
 
 ```html
-<script src="main.js"></script>
+<script src="wiiiiish.js"></script>
 <script>
   var myWish = new Wiiiiish(/* options */);
 </script>

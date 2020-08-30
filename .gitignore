@@ -58,3 +58,8 @@ typings/
 
 # dotenv environment variables file
 .env
+
+.cache
+.parcel-cache
+dist/index.html
+dist/src.*
