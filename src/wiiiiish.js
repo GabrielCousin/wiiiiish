@@ -1,27 +1,28 @@
-import 'normalize.css'
-import './style.css'
+export default class Wiiiiish {
+  timeouts = []
+  wishes = []
 
-export default function Wiiiiish (options) {
-  this.options = Object.assign({
-    itemsSelector: '#w-list',
-    targetSelector: '#w-container',
-    triggerSelector: '#w-trigger',
-    removalDelay: 300,
-    addDuration: 700,
-    pause: 100
-  }, options)
+  constructor(options) {
+    this.options = Object.assign({
+      itemsSelector: '#w-list',
+      targetSelector: '#w-container',
+      triggerSelector: '#w-trigger',
+      removalDelay: 300,
+      addDuration: 700,
+      pause: 100
+    }, options)
 
-  this.$trigger = document.querySelectorAll(this.options.triggerSelector)[0]
-  this.$wishText = document.querySelectorAll(this.options.targetSelector)[0]
+    this.$trigger = document.querySelector(this.options.triggerSelector)
+    this.$wishText = document.querySelector(this.options.targetSelector)
 
-  this.timeouts = []
-  this.wishes = []
+    document.querySelectorAll(`${this.options.itemsSelector} li`).forEach((wish) => {
+      this.wishes.push(wish.innerHTML)
+    })
 
-  document.querySelectorAll(`${this.options.itemsSelector} li`).forEach((wish) => {
-    this.wishes.push(wish.innerHTML)
-  })
+    this.$trigger.addEventListener('click', this.updateText, false)
+  }
 
-  this.addText = () => {
+  addText = () => {
     this.$wishText.classList.add('is-typing')
 
     let newIndex = Math.floor(Math.random() * this.wishes.length)
@@ -35,10 +36,10 @@ export default function Wiiiiish (options) {
     let letters = this.wishes[newIndex].split('')
     let chunks = []
 
-    letters[0] = '<span>' + letters[0] + '</span>'
+    letters[0] = `<span>${letters[0]}</span>`
 
     letters.reduce(function (accumulator, currentValue) {
-      const chunk = accumulator + '<span>' + currentValue + '</span>'
+      const chunk = `${accumulator}<span>${currentValue}</span>`
       chunks.push(chunk)
       return chunk
     })
@@ -50,23 +51,23 @@ export default function Wiiiiish (options) {
     })
   }
 
-  this.clear = () => {
+  clear = () => {
     for (let i = 0; i < this.timeouts.length; i++) {
       clearTimeout(this.timeouts[i])
     }
   }
 
-  this.removeText = () => {
+  removeText = () => {
     this.$wishText.innerHTML = ''
   }
 
-  this.selectText = () => {
+  selectText = () => {
     document.querySelectorAll(`${this.options.targetSelector} span`).forEach((span) => {
       span.classList.add('is-selected')
     })
   }
 
-  this.updateText = () => {
+  updateText = () => {
     this.$wishText.classList.remove('is-typing')
 
     this.selectText()
@@ -77,6 +78,4 @@ export default function Wiiiiish (options) {
       setTimeout(this.addText, this.options.removalDelay + this.options.addDuration)
     ]
   }
-
-  this.$trigger.addEventListener('click', this.updateText, false)
 }
