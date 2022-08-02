@@ -2,19 +2,19 @@
   "name": "wiiiiish",
   "version": "0.2.0",
   "description": "Useless plugin for random happy new year wishes",
-  "main": "dist/wiiiiish.js",
-  "module": "src/wiiiiish.js",
   "repository": "git@github.com:GabrielCousin/wiiiiish.git",
   "author": "Gabriel Cousin <csngab@gmail.com>",
   "scripts": {
     "start": "parcel serve src/index.html",
     "dev": "parcel watch src/index.html",
-    "build": "parcel build src/wiiiiish.js --no-minify --global Wiiiiish",
+    "build": "parcel build src/wiiiiish.js --no-optimize",
     "build:demo": "parcel build src/index.html"
   },
   "license": "MIT",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
   "devDependencies": {
-    "normalize.css": "^8.0.1",
-    "parcel-bundler": "^1.12.4"
+    "parcel": "^2.0.0"
   }
 }

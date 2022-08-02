@@ -61,5 +61,5 @@ typings/
 
 .cache
 .parcel-cache
-dist/index.html
+dist/index*
 dist/src.*
